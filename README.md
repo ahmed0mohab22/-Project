@@ -43,7 +43,6 @@ Finally, we use Terraform’s output functionality to display the public IP addr
 Once the infrastructure is provisioned, we seamlessly transition to Ansible for configuration management tasks within the provisioned instances. Ansible empowers us to automate complex configuration tasks using idempotent playbooks and modules, facilitating efficient and scalable infrastructure management.
 
 Our project seamlessly integrates Terraform and Ansible to create a cohesive deployment pipeline. While Terraform lays the foundation for the infrastructure stack, Ansible takes charge of configuring the provisioned instances, ensuring that they are fully functional and optimized for their intended purposes.
-
-![image](https://github.com/user-attachments/assets/b9cd9237-ce25-4de7-967f-9700fc3f2624)
+![image](https://github.com/user-attachments/assets/b7a986c1-c956-417d-a8f3-eacb8623fa95)
 
 ![image](https://github.com/user-attachments/assets/320cc7a2-5ed0-43f3-96a0-0389e70db8f9)
