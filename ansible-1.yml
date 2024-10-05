@@ -1,0 +1,66 @@
+- hosts: all    
+  become: yes
+  tasks:
+    - name: "Creation of Partition"
+      community.general.parted:
+        device: "/dev/xvdb"
+        name: "GPT"
+        number: 1
+        part_end: "1GiB"
+        fs_type: "ext4"
+        state: present
+        label: "gpt"
+        unit: GiB
+
+    - name: "Running the essential command"
+      command: 
+        cmd: "udevadm settle"
+      register: cmd
+
+    - debug:
+        var: cmd
+
+    - command: 
+        cmd: "lsblk"
+      register: cmd2
+
+    - debug: 
+        var: cmd2 
+
+    - name: "Formatting the partition"
+      community.general.filesystem:
+        fstype: ext4
+        dev: "/dev/xvdb1"
+
+    - name: "Installing web server"
+      package:
+        name: "httpd"
+        state: present
+
+    - name: "Attaching volume with mount-point"
+      ansible.posix.mount:
+        path: "/var/www/html"
+        src: "/dev/xvdb1"
+        state: mounted
+        fstype: ext4
+
+    - name: "Reloading daemon"
+      command:
+        cmd: "systemctl daemon-reload"
+        
+    - command: 
+        cmd: "lsblk"
+      register: cmd3
+
+    - debug:
+        var: cmd3
+
+    - name: "Copy index file to web server"
+      ansible.builtin.copy:
+        src: "index.html"
+        dest: "/var/www/html/index.html"
+
+    - name: "restarting the server"
+      service:
+        name: "httpd"
+        state: "started"
