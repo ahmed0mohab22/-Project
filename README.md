@@ -44,5 +44,6 @@ Once the infrastructure is provisioned, we seamlessly transition to Ansible for 
 
 Our project seamlessly integrates Terraform and Ansible to create a cohesive deployment pipeline. While Terraform lays the foundation for the infrastructure stack, Ansible takes charge of configuring the provisioned instances, ensuring that they are fully functional and optimized for their intended purposes.
 
+![image](https://github.com/user-attachments/assets/b9cd9237-ce25-4de7-967f-9700fc3f2624)
 
 ![image](https://github.com/user-attachments/assets/320cc7a2-5ed0-43f3-96a0-0389e70db8f9)
